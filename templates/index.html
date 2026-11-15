@@ -1,0 +1,507 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<body>
+    <h1>Calculator</h1>
+    <form method = "post">
+        {% csrf_token %}
+        <label for="finput">First number</label><br>
+        <input 
+            type="text"
+            id = "finput"
+            name = "a"
+            placeholder="Enter the first number"
+        >
+        <br><br>
+        <label for="sinput">Second number</label> <br>
+        <input 
+            type="text"
+            id = "sinput"
+            name = "b"
+            placeholder="Enter the second number"
+            >
+        <br><br>
+        <label for="opr">Select operator</label><br>
+        <select name="opr" id="opr">
+            <option value="+">Addition (+)</option>
+            <option value="-">Subtraction (-)</option>
+            <option value="*">Multiplication (*)</option>
+            <option value="**">Exponent (**)</option>
+        </select>
+        <br><br>
+        <button type = "submit">Calculate</button><br>
+        <label>Result</label><br>
+        <input 
+            type="text"
+            value = "{{ solution }}"
+            placeholder = "Result"
+            >
+    </form>
+</body>
+</html> -->
+
+<!-- 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Calculator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #455a78;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .calculator-container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 320px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus,
+        select:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result-box {
+            margin-top: 20px;
+            padding: 12px;
+            background-color: #e9ecef;
+            border-left: 5px solid #007bff;
+            border-radius: 4px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .result-box strong {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator-container">
+        <h2>Django Calculator</h2>
+        <form method="POST">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="a">First Number (a):</label>
+                <input type="text" name="a" id="a" required>
+            </div>
+
+            <div class="form-group">
+                <label for="b">Second Number (b):</label>
+                <input type="text" name="b" id="b" required>
+            </div>
+
+            <div class="form-group">
+                <label for="opr">Operator:</label>
+                <select name="opr" id="opr">
+                    <option value="+">+</option>
+                    <option value="-">-</option>
+                    <option value="*">*</option>
+                    <option value="**">** (Power)</option>
+                </select>
+            </div>
+
+            <button type="submit">Calculate</button>
+        </form>
+
+        {% if solution != "" %}
+            <div class="result-box">
+                Result: <strong>{{ solution }}</strong>
+            </div>
+        {% endif %}
+    </div>
+
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Interactive Calculator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .calculator-container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 320px;
+            position: relative;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input[type="text"]:focus,
+        select:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 12px;
+            margin-top: 4px;
+            display: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .result-box {
+            margin-top: 20px;
+            padding: 12px;
+            background-color: #e9ecef;
+            border-left: 5px solid #007bff;
+            border-radius: 4px;
+            font-size: 16px;
+            color: #333;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .result-box.error {
+            border-left-color: #dc3545;
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .result-box strong {
+            color: #007bff;
+        }
+
+        .result-box.error strong {
+            color: #dc3545;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator-container">
+        <h2>Django Calculator</h2>
+        <form id="calcForm" method="POST">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="a">First Number (a):</label>
+                <input type="text" name="a" id="a" value="{{ a|default:'' }}" autocomplete="off" required>
+                <div id="errorA" class="error-message">Please enter a valid number.</div>
+            </div>
+
+            <div class="form-group">
+                <label for="b">Second Number (b):</label>
+                <input type="text" name="b" id="b" value="{{ b|default:'' }}" autocomplete="off" required>
+                <div id="errorB" class="error-message">Please enter a valid number.</div>
+            </div>
+
+            <div class="form-group">
+                <label for="opr">Operator:</label>
+                <select name="opr" id="opr">
+                    <option value="+">+</option>
+                    <option value="-">-</option>
+                    <option value="*">*</option>
+                    <option value="**">** (Power)</option>
+                </select>
+            </div>
+
+            <button type="submit" id="calcBtn">Calculate</button>
+        </form>
+
+        <!-- Django backend rendered solution fallback -->
+         <!-- 
+        {% if solution != "" %}
+            <div class="result-box {% if solution == 'invalid operator' %}error{% endif %}" id="backendResult">
+                Result: <strong>{{ solution }}</strong>
+            </div>
+        {% endif %}
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("calcForm");
+            const inputA = document.getElementById("a");
+            const inputB = document.getElementById("b");
+            const selectOpr = document.getElementById("opr");
+            const errorA = document.getElementById("errorA");
+            const errorB = document.getElementById("errorB");
+            const backendResult = document.getElementById("backendResult");
+
+            // Helper function to validate numeric input dynamically
+            function validateInput(input, errorElement) {
+                const value = input.value.trim();
+                // Check if it's empty or not a valid number
+                if (value === "" || isNaN(value)) {
+                    input.style.borderColor = "#dc3545";
+                    errorElement.style.display = "block";
+                    return false;
+                } else {
+                    input.style.borderColor = "#28a745";
+                    errorElement.style.display = "none";
+                    return true;
+                }
+            }
+
+            // Real-time input validation feedback
+            inputA.addEventListener("input", () => validateInput(inputA, errorA));
+            inputB.addEventListener("input", () => validateInput(inputB, errorB));
+
+            // Form submission event interception for interactivity
+            form.addEventListener("submit", function (e) {
+                const isAValid = validateInput(inputA, errorA);
+                const isBValid = validateInput(inputB, errorB);
+
+                // Prevent submission if client-side validation fails
+                if (!isAValid || !isBValid) {
+                    e.preventDefault();
+                    return;
+                }
+
+                // OPTIONAL: If you want fully client-side AJAX interaction without refreshing the page, 
+                // you can handle it here. Otherwise, let it submit to Django normally with smooth feedback.
+                
+                // If there's an existing backend result box, animate or update it nicely when submitting
+                if (backendResult) {
+                    backendResult.style.opacity = "0.5";
+                }
+            });
+
+            // Interactive effect: Add dynamic visual focus styling shifts on operator changes
+            selectOpr.addEventListener("change", function () {
+                this.style.backgroundColor = "#e7f1ff";
+                setTimeout(() => {
+                    this.style.backgroundColor = "#ffffff";
+                }, 200);
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+ -->
+
+
+
+ <html>
+<head>
+<title> Calculator</title>
+
+<style>
+    .calculator {
+        width: 300px;
+        margin: auto;
+        border: 5px solid #ccc;
+        padding: 10px;
+        box-shadow: 0 0 500px rgba(0, 0, 0, 0.1);
+    }
+    .calculator input[type="text"] {
+        width: calc(90% );
+        height: 50px;
+        margin-bottom: 10px;
+        font-size: 18px;
+        text-align: center;
+    }
+    .calculator input[type="button"] {
+        width: 80px;
+        height: 50px;
+        margin: 5px;
+        font-size:20px;
+    }
+</style>
+</head>
+<body>
+
+<div class="calculator">
+    <input type="text" id="display" value="">
+    <br>
+    <input type="button" value="7" onclick="addToDisplay('7')">
+    <input type="button" value="8" onclick="addToDisplay('8')">
+    <input type="button" value="9" onclick="addToDisplay('9')">
+    <br>
+    <input type="button" value="4" onclick="addToDisplay('4')">
+    <input type="button" value="5" onclick="addToDisplay('5')">
+    <input type="button" value="6" onclick="addToDisplay('6')">
+    <br>
+    <input type="button" value="1" onclick="addToDisplay('1')">
+    <input type="button" value="2" onclick="addToDisplay('2')">
+    <input type="button" value="3" onclick="addToDisplay('3')">
+    <br>
+    <input type="button" value="0" onclick="addToDisplay('0')">
+
+    
+    <input type="button" value="." onclick="addToDisplay('.')">
+    <input type="button" value="-" onclick="addToDisplay('-')">
+    <br>
+    <input type="button" value="/" onclick="addToDisplay('/')">
+    <input type="button" value="*" onclick="addToDisplay('*')">
+    <input type="button" value="+" onclick="addToDisplay('+')">
+    
+
+    <input type="button" value="=" onclick="calculate()">
+    <br>
+    <input type="button" value="C" onclick="clearDisplay()">
+</div>
+
+<script>
+    function addToDisplay(value) {
+        document.getElementById('display').value += value;
+    }
+
+    function clearDisplay() {
+        document.getElementById('display').value = '';
+    }
+
+    function calculate() {
+        try {
+            var result = eval(document.getElementById('display').value);
+            document.getElementById('display').value = result;
+        } catch (error) {
+            document.getElementById('display').value = 'Invalid Expression';
+        }
+    }
+</script>
+
+</body>
+</html>
